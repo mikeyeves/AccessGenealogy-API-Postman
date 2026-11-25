@@ -1,0 +1,213 @@
+{
+  "info": {
+    "name": "AccessGenealogy WordPress REST API",
+    "description": "Access Genealogy (free genealogy website) exposes the standard WordPress REST API. No key. Useful for finding transcribed lists (e.g. Revolutionary soldiers by state, census and tax lists, Native American histories).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "WordPress REST (live-tested 2026-11-25)",
+      "item": [
+        {
+          "name": "Site search",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://accessgenealogy.com/wp-json/wp/v2/search?search={{query}}&per_page=20",
+              "protocol": "https",
+              "host": [
+                "accessgenealogy",
+                "com"
+              ],
+              "path": [
+                "wp-json",
+                "wp",
+                "v2",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "{{query}}"
+                },
+                {
+                  "key": "per_page",
+                  "value": "20"
+                }
+              ]
+            },
+            "description": "Returns id, title, url, type for matching posts and pages."
+          }
+        },
+        {
+          "name": "Posts by keyword (title, link only)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://accessgenealogy.com/wp-json/wp/v2/posts?search={{query}}&per_page=20&_fields=id,link,title,date",
+              "protocol": "https",
+              "host": [
+                "accessgenealogy",
+                "com"
+              ],
+              "path": [
+                "wp-json",
+                "wp",
+                "v2",
+                "posts"
+              ],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "{{query}}"
+                },
+                {
+                  "key": "per_page",
+                  "value": "20"
+                },
+                {
+                  "key": "_fields",
+                  "value": "id,link,title,date"
+                }
+              ]
+            },
+            "description": "Full post HTML: drop _fields or request content."
+          }
+        },
+        {
+          "name": "One post with content",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://accessgenealogy.com/wp-json/wp/v2/posts/{{post_id}}?_fields=id,link,title,content",
+              "protocol": "https",
+              "host": [
+                "accessgenealogy",
+                "com"
+              ],
+              "path": [
+                "wp-json",
+                "wp",
+                "v2",
+                "posts",
+                "{{post_id}}"
+              ],
+              "query": [
+                {
+                  "key": "_fields",
+                  "value": "id,link,title,content"
+                }
+              ]
+            },
+            "description": "content.rendered = the page text (e.g. Alabama Revolutionary War Soldiers - H surnames)."
+          }
+        },
+        {
+          "name": "Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://accessgenealogy.com/wp-json/wp/v2/categories?per_page=100&_fields=id,name,slug,count",
+              "protocol": "https",
+              "host": [
+                "accessgenealogy",
+                "com"
+              ],
+              "path": [
+                "wp-json",
+                "wp",
+                "v2",
+                "categories"
+              ],
+              "query": [
+                {
+                  "key": "per_page",
+                  "value": "100"
+                },
+                {
+                  "key": "_fields",
+                  "value": "id,name,slug,count"
+                }
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "Posts in a category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://accessgenealogy.com/wp-json/wp/v2/posts?categories={{category_id}}&per_page=50&_fields=id,link,title",
+              "protocol": "https",
+              "host": [
+                "accessgenealogy",
+                "com"
+              ],
+              "path": [
+                "wp-json",
+                "wp",
+                "v2",
+                "posts"
+              ],
+              "query": [
+                {
+                  "key": "categories",
+                  "value": "{{category_id}}"
+                },
+                {
+                  "key": "per_page",
+                  "value": "50"
+                },
+                {
+                  "key": "_fields",
+                  "value": "id,link,title"
+                }
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "API index",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://accessgenealogy.com/wp-json/",
+              "protocol": "https",
+              "host": [
+                "accessgenealogy",
+                "com"
+              ],
+              "path": [
+                "wp-json"
+              ]
+            },
+            "description": "Routes available."
+          }
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "variable": [
+    {
+      "key": "query",
+      "value": "Holder"
+    },
+    {
+      "key": "post_id",
+      "value": "20677"
+    },
+    {
+      "key": "category_id",
+      "value": "1"
+    }
+  ]
+}
